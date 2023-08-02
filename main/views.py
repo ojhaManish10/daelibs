@@ -36,8 +36,7 @@ def day_of_week_average_count(request):
         return Response({"error": "No data available for the given date range or page number."}, status=404)
     reports = []
 
-    # if not queryset.exists():
-    #     return Response({"error": "No data available for the given date range."}, status=404)
+ 
     for q in paginated_queryset:
     # Average count for each day of the week (Monday to Sunday)
         averages = SensorEvent.objects.filter(event_datetime__range=[start_date, end_date], sensor__id=q['sensor_id']).values('sensor__id').annotate(
